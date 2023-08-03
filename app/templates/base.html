@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{titulo}}</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+
+    nav {
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Meu Site</h1>
+  </header>
+  
+  <nav>
+    <!-- Coloque aqui o código do seu menu -->
+    <ul>
+      <li><a href="/">Página inicial</a></li>
+      <li><a href="/sobre">Sobre</a></li>
+      <li><a href="/contatos">Contato</a></li>
+    </ul>
+  </nav>
+
+  {% block conteudo %}
+
+  {% endblock %}
+
+
+  <footer>
+    <p>Rodapé do meu site &copy; 2023</p>
+  </footer>
+</body>
+
+</html>
