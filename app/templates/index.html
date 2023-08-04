@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-<section>
-  <h2>Inicio</h2>
-  <p>Conteúdo da página inicial</p>
-  <p>Bem-vindo ao meu site! Aqui você encontrará informações interessantes sobre diversos tópicos.</p>
-  <p>Este é um exemplo fictício de como você pode expandir o conteúdo da sua página inicial. Você pode adicionar mais parágrafos, listar os principais destaques do seu site ou até mesmo inserir um resumo sobre cada seção do site.</p>
-  <p>Além disso, você pode utilizar formatação para destacar informações importantes. Por exemplo, você pode usar <strong>negrito</strong>, <em>itálico</em> e até mesmo <a href="/sobre">links</a> para outras páginas.</p>
-  <p>Se o seu site for sobre alguma empresa ou negócio, você pode descrever os produtos ou serviços oferecidos. Se for um blog, você pode explicar do que se trata o blog e quais temas serão abordados.</p>
-  <p>Lembre-se de que a página inicial é uma oportunidade para capturar a atenção dos visitantes e incentivá-los a explorar mais o seu site. Portanto, seja claro, conciso e interessante em suas descrições.</p>
+<section class="main-content">
+  <article class="post">
+    <h2>Bem-vindo ao Meu Blog</h2>
+    <p>Este é o lugar onde compartilho minhas ideias, conhecimentos e opiniões sobre diversos tópicos interessantes. Fique à vontade para explorar e deixar seus comentários!</p>
+    <p>Navegue pelos artigos abaixo e descubra mais sobre o que me inspira e motiva.</p>
+  </article>
+  
+  <article class="post">
+    <h2>Título do Primeiro Artigo</h2>
+    <p>Aqui vai o conteúdo do primeiro artigo. Compartilho insights profundos sobre o assunto principal deste artigo. Espero que gostem e aprendam algo novo.</p>
+    <p>Continue lendo para descobrir mais!</p>
+    <a href="#" class="read-more">Leia mais</a>
+  </article>
+  
+  <article class="post">
+    <h2>Título do Segundo Artigo</h2>
+    <p>Neste artigo, exploro uma perspectiva única sobre um tópico atual e relevante. Discuto os prós e contras e ofereço algumas sugestões interessantes.</p>
+    <p>Curioso? Não deixe de conferir!</p>
+    <a href="#" class="read-more">Leia mais</a>
+  </article>
 </section>
 {% endblock %}
-
