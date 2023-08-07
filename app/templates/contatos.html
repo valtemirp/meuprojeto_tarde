@@ -1,8 +1,24 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-<section>
+<section class="contact-form">
     <h2>Contatos</h2>
-    <p class="conteudodocontatos">Conteúdo de contatos</p>
-  </section>
+    <p>Entre em contato conosco preenchendo o formulário abaixo:</p>
+
+    <form action="" method="post">
+        {{ formulario.csrf_token }}
+        <label for="nome">Nome:</label>
+        {{ formulario.nome }}
+
+        <label for="email">Email:</label>
+        {{ formulario.email }}
+
+        <label for="telefone">Telefone:</label>
+        {{ formulario.telefone }}
+
+        <label for="mensagem">Mensagem:</label>
+         
+        {{ formulario.enviar }}
+    </form>
+</section>
 {% endblock %}

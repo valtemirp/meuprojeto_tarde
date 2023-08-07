@@ -23,11 +23,15 @@ Terceiro passo: ativar a máquina virtual no windows
 ```bash
 nomedamaquinavirtual\Scripts\activate
 ```
-Quarto passo: instalar o flask
-```bash
-pip install flask
-```
 
+Quarto passo: instalar bibliotecas
+```bash
+pip install -r dependencias.txt
+```
+Quinto passo: atualizou o projeto?
+```bash
+pip freeze > dependencias.txt
+```
 ## Autores
 
 - [@valtemirp](https://www.github.com/valtemirp)
