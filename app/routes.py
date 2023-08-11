@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template
+from flask import render_template, url_for, request, flash 
 from app.forms import Contato
 
 @app.route('/')
@@ -24,7 +24,6 @@ def contatos():
             'telefone' : telefone,
             'mensagem' : mensagem
         }
-
 
     return render_template('contatos.html', titulo = 'Contatos',formulario = formulario,dados_formulario = dados_formulario)
 
