@@ -12,12 +12,16 @@ def contatos():
     formulario = Contato()
     print('Acessou a rota contatos!')
     if formulario.validate_on_submit():
-        print('O formulario foi validado!')
+        
         nome = formulario.nome.data
         email = formulario.email.data
         telefone = formulario.telefone.data
         mensagem = formulario.mensagem.data
-
+        print('O formulario foi enviado!')
+        print(nome)
+        print(email)
+        print(telefone)
+        print(mensagem)
         dados_formulario = {
             'nome': nome,
             'email': email,
