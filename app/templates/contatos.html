@@ -5,21 +5,33 @@
     <h2>Contatos</h2>
     <p>Entre em contato conosco preenchendo o formulário abaixo:</p>
 
-    <form action="" method="post">
-        {{ formulario.csrf_token }}
-        <label for="nome">Nome:</label>
-        {{ formulario.nome }}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <form action="" method="post">
+                {{ formulario.csrf_token }}
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    {{ formulario.nome }}
+                </div>
 
-        <label for="email">Email:</label>
-        {{ formulario.email }}
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    {{ formulario.email }}
+                </div>
 
-        <label for="telefone">Telefone:</label>
-        {{ formulario.telefone }}
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    {{ formulario.telefone }}
+                </div>
 
-        <label for="mensagem">Mensagem:</label>
-        {{ formulario.mensagem }}
-        
-        {{ formulario.enviar }}
-    </form>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    {{ formulario.mensagem }}
+                </div>
+
+                <button type="submit" class="btn btn-success">{{ formulario.enviar }}</button>
+            </form>
+        </div>
+    </div>
 </section>
 {% endblock %}

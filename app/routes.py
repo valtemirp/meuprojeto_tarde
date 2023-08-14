@@ -39,3 +39,6 @@ def sobre():
 def projetos():
     return render_template('projetos.html', titulo = 'Projetos' )
 
+@app.route('/teste')
+def teste():
+    return render_template('teste.html')
