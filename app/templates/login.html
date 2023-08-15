@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<section class="main-content">
+  <h2 class="mb-4">Login</h2>
+  <form action="#" method="post" class="needs-validation" novalidate>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+      <div class="invalid-feedback">
+        Por favor, insira um email válido.
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="senha">Senha</label>
+      <input type="password" class="form-control" id="senha" name="senha" required>
+      <div class="invalid-feedback">
+        Por favor, insira a senha.
+      </div>
+    </div>
+    
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="lembrarUsuario" name="lembrarUsuario">
+      <label class="form-check-label" for="lembrarUsuario">Lembrar Usuário</label>
+    </div>
+    
+    <button class="btn btn-primary" type="submit">Entrar</button>
+  </form>
+</section>
+{% endblock %}
