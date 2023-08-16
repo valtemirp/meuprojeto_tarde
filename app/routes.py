@@ -50,11 +50,23 @@ def cadastro():
             db.session.commit()
             flash('Seu cadastro foi realizado com sucesso!')
         except Exception as e:
-            flash('Ocorreu um erro ao cadastrar: ' + str(e))
+            flash('Ocorreu um erro ao cadastrar! Entre em contato com o suporte: adm@admin.com')
+            print(str(e))
     return render_template('cadastro.html', titulo='Cadastro', cadastro=cadastro)
 
 
-@app.route('/login')
+@app.route('/login', methods= ['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        senha = request.form.get('senha')
+        user = CadastroModel.query.filter_by(email = email, senha = senha)
+        if user and user.senha == senha:
+            session['email']   = user.id
+            flash('Seja bem vindo')
+        else:
+            flash('Senha ou e-mail incorreto!')
+
+
     return render_template('login.html', tituto = 'Login')
 
