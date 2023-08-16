@@ -14,7 +14,6 @@ class Cadastro(FlaskForm):
     nome = StringField('nome', validators=[DataRequired()])
     sobrenome = StringField('nome', validators=[DataRequired()])
     email = EmailField('email',validators=[DataRequired()])
-    telefone = TelField('telefone',validators=[DataRequired()])
     senha = PasswordField('senha',validators=[DataRequired()]) 
     enviar = SubmitField('Enviar')
 

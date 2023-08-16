@@ -17,10 +17,9 @@ def contatos():
         flash('Seu cadastro foi enviado com sucesso!')
         nome = formulario.nome.data
         email = formulario.email.data
-        telefone = formulario.telefone.data
         mensagem = formulario.mensagem.data
         
-        novo_contato = ContatoModel(nome=nome,email=email,telefone=telefone,mensagem=mensagem)
+        novo_contato = ContatoModel(nome=nome,email=email,mensagem=mensagem)
         db.session.add(novo_contato)
         db.session.commit()
     return render_template('contatos.html', titulo = 'Contatos',formulario = formulario)
@@ -38,19 +37,22 @@ def blog():
 
 @app.route('/cadastro', methods=['POST', 'GET'])
 def cadastro():
+    print('Acessou a rota de cadastro')
     cadastro = Cadastro()
     if cadastro.validate_on_submit():
-        flash('Seu cadastro foi realizado com sucesso!')
-        nome = cadastro.nome.data
-        sobrenome = cadastro.nome.data
-        email = cadastro.email.data
-        telefone = cadastro.telefone.data
-        senha = cadastro.senha.data
+        try:
+            nome = cadastro.nome.data
+            sobrenome = cadastro.sobrenome.data
+            email = cadastro.email.data
+            senha = cadastro.senha.data
+            novo_cadastro = CadastroModel(nome=nome, sobrenome=sobrenome, email=email, senha=senha)
+            db.session.add(novo_cadastro)
+            db.session.commit()
+            flash('Seu cadastro foi realizado com sucesso!')
+        except Exception as e:
+            flash('Ocorreu um erro ao cadastrar: ' + str(e))
+    return render_template('cadastro.html', titulo='Cadastro', cadastro=cadastro)
 
-        novo_cadastro = CadastroModel(nome = nome, sobrenome = sobrenome, email=email, telefone=telefone, senha=senha)
-        db.session.add(novo_cadastro)
-        db.session.commit()
-    return render_template('cadastro.html', tituto = 'Cadastro',cadastro = cadastro)
 
 @app.route('/login')
 def login():
