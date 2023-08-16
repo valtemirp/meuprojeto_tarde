@@ -1,5 +1,5 @@
 from app import app , db
-from flask import render_template, url_for, request, flash 
+from flask import render_template, url_for, request, flash, session
 from app.forms import Contato, Cadastro
 from app.models import ContatoModel, CadastroModel
 
@@ -60,9 +60,11 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         senha = request.form.get('senha')
-        user = CadastroModel.query.filter_by(email = email, senha = senha)
+        nome = request.form.get('nome')
+        user = CadastroModel.query.filter_by(email = email, senha = senha).first()
+        
         if user and user.senha == senha:
-            session['email']   = user.id
+            session['email'] = user.id
             flash('Seja bem vindo')
         else:
             flash('Senha ou e-mail incorreto!')
