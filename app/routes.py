@@ -56,20 +56,24 @@ def cadastro():
     return render_template('cadastro.html', titulo='Cadastro', cadastro=cadastro)
 
 
-@app.route('/login', methods= ['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
         senha = request.form.get('senha')
-        user = CadastroModel.query.filter_by(email = email, senha = senha).first()
+        user = CadastroModel.query.filter_by(email=email, senha=senha).first()
         if user and user.senha == senha:
-            session['email'] = user.id
-            time.sleep(2)
+            session['email'] = user.email  
+            session['nome'] = user.nome
             flash('Seja bem vindo')
-            return redirect(url_for('index'))
+            return redirect(url_for('index')) 
         else:
             flash('Senha ou e-mail incorreto!')
+    return render_template('login.html', titulo='Login')
+@app.route('/sair')
+def sair():
+    session.pop('email', None)
+    session.pop('nome', None)
+    return redirect(url_for('login'))
 
-
-    return render_template('login.html', tituto = 'Login')
 

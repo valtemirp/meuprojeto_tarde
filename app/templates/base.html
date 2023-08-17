@@ -25,25 +25,25 @@
           <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
           <li class="nav-item"><a class="nav-link" href="/contatos">Contatos</a></li>
           <li class="nav-item"><a class="nav-link" href="/sobre">Sobre</a></li>
-          <li class="nav-item"><a class="nav-link" href="/cadastro">Cadastre-se</a></li>
-          <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-
-
-
+          {% if session['email'] %}
+            <li class="nav-item"><span class="nav-link">Olá {{ session['nome'] }}!</span></li>
+            <li class="nav-item"><a class="nav-link" href="/sair">Sair</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="/cadastro">Cadastre-se</a></li>
+            <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+          {% endif %}
         </ul>
       </div>
     </nav>
   </header>
-
   <div class="container mt-4">
     {% block conteudo %}
-
     {% endblock %}
   </div>
 
   <footer class="mt-5">
     <div class="container text-center">
-      <p>&copy; 2023 Valtemir Procópio de Lima. Todos os direitos reservados.</p>
+      <p>&copy; 2023 Valtemir Procopio de Lima. Todos os direitos reservados.</p>
     </div>
   </footer>
 
