@@ -1,7 +1,9 @@
-from app import app , db
+from app import app , db, bcrypt
 from flask import render_template, url_for, request, flash, session, redirect
 from app.forms import Contato, Cadastro
 from app.models import ContatoModel, CadastroModel
+from flask_bcrypt import check_password_hash
+
 import time
 
 
@@ -46,7 +48,8 @@ def cadastro():
             sobrenome = cadastro.sobrenome.data
             email = cadastro.email.data
             senha = cadastro.senha.data
-            novo_cadastro = CadastroModel(nome=nome, sobrenome=sobrenome, email=email, senha=senha)
+            hash_senha = bcrypt.generate_password_hash(senha).decode('utf-8')
+            novo_cadastro = CadastroModel(nome=nome, sobrenome=sobrenome, email=email, senha=hash_senha)
             db.session.add(novo_cadastro)
             db.session.commit()
             flash('Seu cadastro foi realizado com sucesso!')
@@ -57,12 +60,14 @@ def cadastro():
 
 
 @app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
         senha = request.form.get('senha')
-        user = CadastroModel.query.filter_by(email=email, senha=senha).first()
-        if user and user.senha == senha:
+        user = CadastroModel.query.filter_by(email=email).first()
+        
+        if user and check_password_hash(user.senha, senha):
             session['email'] = user.email  
             session['nome'] = user.nome
             flash('Seja bem vindo')

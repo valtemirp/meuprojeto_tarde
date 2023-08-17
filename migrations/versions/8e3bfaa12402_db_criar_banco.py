@@ -1,8 +1,8 @@
-"""db_criar_cadastro
+"""db_criar_banco
 
-Revision ID: 3c757246aba8
+Revision ID: 8e3bfaa12402
 Revises: 
-Create Date: 2023-08-16 13:19:16.655548
+Create Date: 2023-08-17 16:06:33.703885
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3c757246aba8'
+revision = '8e3bfaa12402'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,7 +23,6 @@ def upgrade():
     sa.Column('nome', sa.String(length=40), nullable=False),
     sa.Column('sobrenome', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=60), nullable=False),
-    sa.Column('telefone', sa.String(length=14), nullable=False),
     sa.Column('senha', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
