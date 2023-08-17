@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="{{url_for('static',filename='css/estilo.css')}}">
   <!-- Incluindo o Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Icons bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -27,7 +29,7 @@
           <li class="nav-item"><a class="nav-link" href="/sobre">Sobre</a></li>
           {% if session['email'] %}
             <li class="nav-item"><span class="nav-link">Olá {{ session['nome'] }}!</span></li>
-            <li class="nav-item"><a class="nav-link" href="/sair">Sair</a></li>
+            <li class="nav-item"><a class="nav-link" href="/sair"><i class="bi bi-box-arrow-right"></i></a></li>
           {% else %}
             <li class="nav-item"><a class="nav-link" href="/cadastro">Cadastre-se</a></li>
             <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
