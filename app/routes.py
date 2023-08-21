@@ -80,6 +80,8 @@ def login():
 def sair():
     session.pop('email', None)
     session.pop('nome', None)
+    session.pop('sobrenome', None)
+    session.pop('senha', None)
     return redirect(url_for('login'))
 
 @app.route('/editar', methods=['POST', 'GET'])
@@ -94,5 +96,11 @@ def editar():
         senha = request.form.get('senha')
         usuario.senha = bcrypt.generate_password_hash(senha).decode('utf-8')
         db.session.commit()
+        session['email'] = usuario.email  
+        session['nome'] = usuario.nome
+        session['sobrenome'] = usuario.sobrenome
+        session['senha'] = usuario.senha
+        
         flash('Seus dados foram atualizados com sucesso!')
+        return redirect(url_for('editar'))
     return render_template('editar.html', titulo= 'Editar', usuario = usuario)
