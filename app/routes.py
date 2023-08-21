@@ -69,6 +69,7 @@ def login():
         if user and check_password_hash(user.senha, senha):
             session['email'] = user.email  
             session['nome'] = user.nome
+            session['senha'] = user.senha
             flash('Seja bem vindo')
             return redirect(url_for('index')) 
         else:
