@@ -60,7 +60,6 @@ def cadastro():
 
 
 @app.route('/login', methods=['GET', 'POST'])
-@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -81,4 +80,7 @@ def sair():
     session.pop('nome', None)
     return redirect(url_for('login'))
 
+@app.route('/editar')
+def editar():
 
+    return render_template('editar.html')
