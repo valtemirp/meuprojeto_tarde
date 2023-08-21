@@ -69,6 +69,7 @@ def login():
         if user and check_password_hash(user.senha, senha):
             session['email'] = user.email  
             session['nome'] = user.nome
+            session['sobrenome'] = user.sobrenome
             session['senha'] = user.senha
             flash('Seja bem vindo')
             return redirect(url_for('index')) 
@@ -81,7 +82,17 @@ def sair():
     session.pop('nome', None)
     return redirect(url_for('login'))
 
-@app.route('/editar')
+@app.route('/editar', methods=['POST', 'GET'])
 def editar():
-
-    return render_template('editar.html')
+    if 'email' not in session:
+        return redirect(url_for('login'))
+    usuario = CadastroModel.query.filter_by(email = session['email']).first()
+    if request.method == 'POST':
+        usuario.nome = request.form.get('nome')
+        usuario.sobrenome = request.form.get('sobrenome')
+        usuario.email = request.form.get('email')
+        senha = request.form.get('senha')
+        usuario.senha = bcrypt.generate_password_hash(senha).decode('utf-8')
+        db.session.commit()
+        flash('Seus dados foram atualizados com sucesso!')
+    return render_template('editar.html', titulo= 'Editar', usuario = usuario)

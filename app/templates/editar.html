@@ -16,22 +16,22 @@
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="nome">Nome</label>
-                <input type="text" class="form-control" placeholder="Digite aqui o novo nome">
+                <input type="text" class="form-control" name="nome" value="{{session['nome']}}">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="sobrenome">Sobrenome</label>
-                <input type="text" class="form-control" value="{{session['sobrenome']}}">
+                <input type="text" class="form-control" name="sobrenome" value="{{session['sobrenome']}}">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" placeholder="Digite aqui o seu novo email">
+                <input type="email" class="form-control" name="email" value="{{session['email']}}">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="senha">Senha</label>
-                <input type="password" class="form-control" placeholder="Digite aqui sua nova senha">
+                <input type="password" class="form-control" name="senha" value="{{session['senha']}}">
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Entrar</button>
+        <button class="btn btn-primary" type="submit">Salvar</button>
     </form>
 </section>
 {% endblock %}
