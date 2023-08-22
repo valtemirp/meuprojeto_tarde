@@ -72,7 +72,7 @@ def login():
             session['sobrenome'] = user.sobrenome
             session['senha'] = user.senha
             flash('Seja bem vindo')
-            return redirect(url_for('index')) 
+            return redirect(url_for('login')) 
         else:
             flash('Senha ou e-mail incorreto!')
     return render_template('login.html', titulo='Login')
@@ -100,7 +100,21 @@ def editar():
         session['nome'] = usuario.nome
         session['sobrenome'] = usuario.sobrenome
         session['senha'] = usuario.senha
-        
+
         flash('Seus dados foram atualizados com sucesso!')
         return redirect(url_for('editar'))
     return render_template('editar.html', titulo= 'Editar', usuario = usuario)
+
+@app.route('/excluir_conta', methods=['GET'])
+def excluir_conta():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+    
+    usuario = CadastroModel.query.filter_by(email = session['email']).first()
+    db.session.delete(usuario)
+    db.session.commit()
+    session.clear()
+
+    flash('Sua conta foi excluida com sucesso!')
+    return redirect(url_for('cadastro'))
+
