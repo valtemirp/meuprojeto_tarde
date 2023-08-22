@@ -1,8 +1,8 @@
 """db_criar_banco
 
-Revision ID: d3611b1acf33
+Revision ID: a0a97931b0a7
 Revises: 
-Create Date: 2023-08-21 14:12:42.374294
+Create Date: 2023-08-22 15:32:55.755537
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd3611b1acf33'
+revision = 'a0a97931b0a7'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,8 +23,15 @@ def upgrade():
     sa.Column('nome', sa.String(length=40), nullable=False),
     sa.Column('sobrenome', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=60), nullable=False),
+    sa.Column('cpf', sa.String(length=14), nullable=False),
+    sa.Column('telefone', sa.String(length=15), nullable=False),
+    sa.Column('endereco_rua', sa.String(length=100), nullable=False),
+    sa.Column('endereco_bairro', sa.String(length=50), nullable=False),
+    sa.Column('endereco_cidade', sa.String(length=50), nullable=False),
+    sa.Column('endereco_uf', sa.String(length=2), nullable=False),
     sa.Column('senha', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('cpf'),
     sa.UniqueConstraint('email')
     )
     op.create_table('contato_model',

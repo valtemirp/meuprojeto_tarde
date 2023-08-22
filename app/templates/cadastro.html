@@ -3,16 +3,16 @@
 {% block conteudo %}
 <section class="main-content">
   {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for mensagem in messages %}
-            <div class="alert alert-success" role="alert">
-                {{ mensagem }}
-            </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+    {% if messages %}
+      {% for mensagem in messages %}
+      <div class="alert alert-success" role="alert">
+          {{ mensagem }}
+      </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
   <h2 class="mb-4">Cadastre-se</h2>
-  <form action="" method="post">
+  <form action="{{ url_for('cadastro') }}" method="post">
     {{ cadastro.csrf_token }}
     <div class="form-row">
       <div class="col-md-6 mb-3">
@@ -22,16 +22,42 @@
       <div class="col-md-6 mb-3">
         <label for="sobrenome">Sobrenome</label>
         {{ cadastro.sobrenome(class="form-control", placeholder="Digite aqui o seu sobrenome") }}
-        </div>
-            <div class="col-md-6 mb-3">
-              <label for="email">Email</label>
-              {{ cadastro.email(class="form-control", placeholder="Digite aqui o seu e-mail") }}      
-              </div>
-            <div class="col-md-6 mb-3">
-              <label for="senha">Senha</label>
-              {{ cadastro.senha(class="form-control", placeholder="Digite aqui o seu e-mail") }}
-              </div>
       </div>
+      <div class="col-md-6 mb-3">
+        <label for="email">Email</label>
+        {{ cadastro.email(class="form-control", placeholder="Digite aqui o seu e-mail") }}      
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="cpf">CPF</label>
+        {{ cadastro.cpf(class="form-control", placeholder="Digite aqui o seu CPF") }}
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="telefone">Telefone</label>
+        {{ cadastro.telefone(class="form-control", placeholder="Digite aqui o seu telefone") }}
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="endereco_rua">Endereço (Rua com Número)</label>
+        {{ cadastro.endereco_rua(class="form-control", placeholder="Digite aqui o seu endereço") }}
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="endereco_bairro">Bairro</label>
+        {{ cadastro.endereco_bairro(class="form-control", placeholder="Digite aqui o seu bairro") }}
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="endereco_cidade">Cidade</label>
+        {{ cadastro.endereco_cidade(class="form-control", placeholder="Digite aqui a sua cidade") }}
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="endereco_uf">UF</label>
+        {{ cadastro.endereco_uf(class="form-control") }}
+    </div>
+    
+    
+      <div class="col-md-6 mb-3">
+        <label for="senha">Senha</label>
+        {{ cadastro.senha(class="form-control", placeholder="Digite aqui a sua senha") }}
+      </div>
+    </div>
     {{ cadastro.enviar(class="btn btn-primary")}} 
   </form>
 </section>

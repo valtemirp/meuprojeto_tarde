@@ -47,9 +47,28 @@ def cadastro():
             nome = cadastro.nome.data
             sobrenome = cadastro.sobrenome.data
             email = cadastro.email.data
+            cpf = cadastro.cpf.data
+            telefone = cadastro.telefone.data
+            endereco_rua = cadastro.endereco_rua.data
+            endereco_bairro = cadastro.endereco_bairro.data
+            endereco_cidade = cadastro.endereco_cidade.data
+            endereco_uf = cadastro.endereco_uf.data
             senha = cadastro.senha.data
             hash_senha = bcrypt.generate_password_hash(senha).decode('utf-8')
-            novo_cadastro = CadastroModel(nome=nome, sobrenome=sobrenome, email=email, senha=hash_senha)
+            
+            novo_cadastro = CadastroModel(
+                nome=nome,
+                sobrenome=sobrenome,
+                email=email,
+                cpf=cpf,  
+                telefone=telefone,  
+                endereco_rua=endereco_rua,
+                endereco_bairro=endereco_bairro,
+                endereco_cidade=endereco_cidade,
+                endereco_uf=endereco_uf,
+                senha=hash_senha
+            )
+            
             db.session.add(novo_cadastro)
             db.session.commit()
             flash('Seu cadastro foi realizado com sucesso!')
@@ -70,7 +89,12 @@ def login():
             session['email'] = user.email  
             session['nome'] = user.nome
             session['sobrenome'] = user.sobrenome
-            session['senha'] = user.senha
+            session['endereco_bairro'] = user.endereco_bairro
+            session['endereco_uf'] = user.endereco_uf
+            session['endereco_rua'] = user.endereco_rua
+            session['cpf'] = user.cpf
+            session['telefone'] = user.telefone
+            session['endereco_cidade'] = user.endereco_cidade
             flash('Seja bem vindo')
             return redirect(url_for('login')) 
         else:
@@ -88,22 +112,43 @@ def sair():
 def editar():
     if 'email' not in session:
         return redirect(url_for('login'))
-    usuario = CadastroModel.query.filter_by(email = session['email']).first()
+    
+    usuario = CadastroModel.query.filter_by(email=session['email']).first()
+    
     if request.method == 'POST':
-        usuario.nome = request.form.get('nome')
-        usuario.sobrenome = request.form.get('sobrenome')
-        usuario.email = request.form.get('email')
-        senha = request.form.get('senha')
-        usuario.senha = bcrypt.generate_password_hash(senha).decode('utf-8')
-        db.session.commit()
-        session['email'] = usuario.email  
-        session['nome'] = usuario.nome
-        session['sobrenome'] = usuario.sobrenome
-        session['senha'] = usuario.senha
+        senha_atual = request.form.get('senha_atual')
+        if check_password_hash(usuario.senha, senha_atual):
+            usuario.nome = request.form.get('nome')
+            usuario.sobrenome = request.form.get('sobrenome')
+            usuario.email = request.form.get('email')
+            nova_senha = request.form.get('nova_senha')
+            if nova_senha:
+                usuario.senha = bcrypt.generate_password_hash(nova_senha).decode('utf-8')
+            
+            usuario.endereco_rua = request.form.get('endereco_rua')
+            usuario.endereco_bairro = request.form.get('endereco_bairro')
+            usuario.endereco_cidade = request.form.get('endereco_cidade')
+            usuario.endereco_uf = request.form.get('endereco_uf')
+        
+            db.session.commit()
+        
+            session['email'] = usuario.email  
+            session['nome'] = usuario.nome
+            session['sobrenome'] = usuario.sobrenome
+            session['senha'] = usuario.senha
+            session['endereco_rua'] = usuario.endereco_rua
+            session['endereco_bairro'] = usuario.endereco_bairro
+            session['endereco_cidade'] = usuario.endereco_cidade
+            session['endereco_uf'] = usuario.endereco_uf
 
-        flash('Seus dados foram atualizados com sucesso!')
-        return redirect(url_for('editar'))
-    return render_template('editar.html', titulo= 'Editar', usuario = usuario)
+            flash('Seus dados foram atualizados com sucesso!')
+            return redirect(url_for('editar'))
+        else:
+            flash('Senha atual incorreta!')
+    
+    return render_template('editar.html', titulo='Editar', usuario=usuario)
+
+
 
 @app.route('/excluir_conta', methods=['GET'])
 def excluir_conta():

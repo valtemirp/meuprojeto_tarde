@@ -11,7 +11,7 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
-    <h2 class="mb-4">Editar usuario</h2>
+    <h2 class="mb-4">Editar usuário</h2>
     <form action="" method="post">
         <div class="form-row">
             <div class="col-md-6 mb-3">
@@ -27,10 +27,68 @@
                 <input type="email" class="form-control" name="email" value="{{session['email']}}">
             </div>
             <div class="col-md-6 mb-3">
-                <label for="senha">Digite sua senha atual</label>
-                <input  type="password" class="form-control" name="senha" value="">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" name="cpf" value="{{session['cpf']}}">
             </div>
-        
+            <div class="col-md-6 mb-3">
+                <label for="telefone">Telefone</label>
+                <input type="text" class="form-control" name="telefone" value="{{session['telefone']}}">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="endereco_rua">Endereço (Rua com Número)</label>
+                <input type="text" class="form-control" name="endereco_rua" value="{{session['endereco_rua']}}">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="endereco_bairro">Bairro</label>
+                <input type="text" class="form-control" name="endereco_bairro" value="{{session['endereco_bairro']}}">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="endereco_cidade">Cidade</label>
+                <input type="text" class="form-control" name="endereco_cidade" value="{{session['endereco_cidade']}}">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="endereco_uf">UF</label>
+                <select class="form-control" name="endereco_uf">
+                    <option value="AC" {% if session['endereco_uf'] == 'AC' %}selected{% endif %}>Acre</option>
+                    <option value="AL" {% if session['endereco_uf'] == 'AL' %}selected{% endif %}>Alagoas</option>
+                    <option value="AP" {% if session['endereco_uf'] == 'AP' %}selected{% endif %}>Amapá</option>
+                    <option value="AM" {% if session['endereco_uf'] == 'AM' %}selected{% endif %}>Amazonas</option>
+                    <option value="BA" {% if session['endereco_uf'] == 'BA' %}selected{% endif %}>Bahia</option>
+                    <option value="CE" {% if session['endereco_uf'] == 'CE' %}selected{% endif %}>Ceará</option>
+                    <option value="DF" {% if session['endereco_uf'] == 'DF' %}selected{% endif %}>Distrito Federal</option>
+                    <option value="ES" {% if session['endereco_uf'] == 'ES' %}selected{% endif %}>Espírito Santo</option>
+                    <option value="GO" {% if session['endereco_uf'] == 'GO' %}selected{% endif %}>Goiás</option>
+                    <option value="MA" {% if session['endereco_uf'] == 'MA' %}selected{% endif %}>Maranhão</option>
+                    <option value="MT" {% if session['endereco_uf'] == 'MT' %}selected{% endif %}>Mato Grosso</option>
+                    <option value="MS" {% if session['endereco_uf'] == 'MS' %}selected{% endif %}>Mato Grosso do Sul</option>
+                    <option value="MG" {% if session['endereco_uf'] == 'MG' %}selected{% endif %}>Minas Gerais</option>
+                    <option value="PA" {% if session['endereco_uf'] == 'PA' %}selected{% endif %}>Pará</option>
+                    <option value="PB" {% if session['endereco_uf'] == 'PB' %}selected{% endif %}>Paraíba</option>
+                    <option value="PR" {% if session['endereco_uf'] == 'PR' %}selected{% endif %}>Paraná</option>
+                    <option value="PE" {% if session['endereco_uf'] == 'PE' %}selected{% endif %}>Pernambuco</option>
+                    <option value="PI" {% if session['endereco_uf'] == 'PI' %}selected{% endif %}>Piauí</option>
+                    <option value="RJ" {% if session['endereco_uf'] == 'RJ' %}selected{% endif %}>Rio de Janeiro</option>
+                    <option value="RN" {% if session['endereco_uf'] == 'RN' %}selected{% endif %}>Rio Grande do Norte</option>
+                    <option value="RS" {% if session['endereco_uf'] == 'RS' %}selected{% endif %}>Rio Grande do Sul</option>
+                    <option value="RO" {% if session['endereco_uf'] == 'RO' %}selected{% endif %}>Rondônia</option>
+                    <option value="RR" {% if session['endereco_uf'] == 'RR' %}selected{% endif %}>Roraima</option>
+                    <option value="SC" {% if session['endereco_uf'] == 'SC' %}selected{% endif %}>Santa Catarina</option>
+                    <option value="SP" {% if session['endereco_uf'] == 'SP' %}selected{% endif %}>São Paulo</option>
+                    <option value="SE" {% if session['endereco_uf'] == 'SE' %}selected{% endif %}>Sergipe</option>
+                    <option value="TO" {% if session['endereco_uf'] == 'TO' %}selected{% endif %}>Tocantins</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="senha_atual">Digite sua senha atual</label>
+                <input type="password" class="form-control" name="senha_atual" value="">
+                {% if errors and 'senha_atual' in errors %}
+                    <small class="text-danger">{{ errors['senha_atual'][0] }}</small>
+                {% endif %}
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="nova_senha">Nova Senha</label>
+                <input type="password" class="form-control" name="nova_senha" value="">
+            </div>
         </div>
         <button class="btn btn-primary" type="submit">Salvar</button>
     </form>
