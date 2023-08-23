@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<section class="main-content">
+    <h2 class="mb-4">Detalhes do Projeto: Gerenciador de Tarefas</h2>
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Gerenciador de Tarefas</h3>
+            <p class="card-text">Bem-vindo ao nosso projeto "Gerenciador de Tarefas"! Este aplicativo web foi projetado...</p>
+            
+            <!-- Outro conteúdo do projeto aqui -->
+            
+            {% if session['email'] %}
+                <a href="{{ url_for('projetos') }}" class="btn btn-primary">Voltar à Lista de Projetos</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn btn-primary">Faça login para acessar</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
