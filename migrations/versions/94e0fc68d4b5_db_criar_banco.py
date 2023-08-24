@@ -1,8 +1,8 @@
 """db_criar_banco
 
-Revision ID: 6884997bf131
+Revision ID: 94e0fc68d4b5
 Revises: 
-Create Date: 2023-08-23 14:17:55.662038
+Create Date: 2023-08-24 17:30:21.370893
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6884997bf131'
+revision = '94e0fc68d4b5'
 down_revision = None
 branch_labels = None
 depends_on = None
