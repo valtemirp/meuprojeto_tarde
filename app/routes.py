@@ -167,6 +167,7 @@ def excluir_conta():
 def projeto1():
     return render_template('projetos/projeto1.html')
 
+
 @app.route('/projeto2')
 def projeto2():
     return render_template('projetos/projeto2.html')
