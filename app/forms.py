@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,EmailField,TelField,TextAreaField,SubmitField, PasswordField, SelectField
 from wtforms.validators import DataRequired, Email, Length, Regexp
 from flask_wtf.csrf import CSRFProtect
-import email_validator
+from email_validator import validate_email, EmailNotValidError
 class Contato(FlaskForm):
     nome = StringField('nome', validators=[DataRequired()])
     email = EmailField('email',validators=[DataRequired(), Email()])
