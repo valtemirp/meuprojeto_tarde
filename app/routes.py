@@ -42,7 +42,9 @@ def blog():
 def cadastro():
     print('Acessou a rota de cadastro')
     cadastro = Cadastro()
-    if cadastro.validate_on_submit():
+    
+    if request.method == 'POST' and cadastro.validate():
+        
         try:
             nome = cadastro.nome.data
             sobrenome = cadastro.sobrenome.data
@@ -68,6 +70,7 @@ def cadastro():
                 endereco_uf=endereco_uf,
                 senha=hash_senha
             )
+            print(novo_cadastro)
             
             db.session.add(novo_cadastro)
             db.session.commit()
@@ -75,6 +78,7 @@ def cadastro():
         except Exception as e:
             flash('Ocorreu um erro ao cadastrar! Entre em contato com o suporte: adm@admin.com')
             print(str(e))
+    print("Resultado de validate_on_submit:", cadastro.validate_on_submit())
     return render_template('cadastro.html', titulo='Cadastro', cadastro=cadastro)
 
 

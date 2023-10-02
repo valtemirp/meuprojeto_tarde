@@ -58,7 +58,7 @@
     
     <div class="col-md-6 mb-3">
       <label for="senha">Senha</label>
-      {{ cadastro.senha(class="form-control", placeholder="Digite aqui a sua senha", id="password", onkeyup="validatePassword()") }}
+      {{ cadastro.senha(class="form-control", placeholder="Digite aqui a sua senha", id="senha", onkeyup="validatePassword()") }}
       <ul id="passwordCriteria">
           <li id="length">8 caracteres</li>
           <li id="number">1 um número</li>
@@ -67,31 +67,31 @@
       </ul>
       <script>
       function validatePassword() {
-        const password = document.getElementById("password").value;
+        const senha = document.getElementById("senha").value;
     
         // Check for length
-        if (password.length >= 8) {
+        if (senha.length >= 8) {
             document.getElementById("length").style.color = "green";
         } else {
             document.getElementById("length").style.color = "red";
         }
     
         // Check for number
-        if (/\d/.test(password)) {
+        if (/\d/.test(senha)) {
             document.getElementById("number").style.color = "green";
         } else {
             document.getElementById("number").style.color = "red";
         }
     
         // Check for special character
-        if (/[!@#$%^&*()_+\-=\[\]{};:'"\\|,.<>\/?]+/.test(password)) {
+        if (/[!@#$%^&*()_+\-=\[\]{};:'"\\|,.<>\/?]+/.test(senha)) {
             document.getElementById("specialChar").style.color = "green";
         } else {
             document.getElementById("specialChar").style.color = "red";
         }
     
         // Check for whitespace at the beginning or end
-        if (/^\s|\s$/.test(password)) {
+        if (/^\s|\s$/.test(senha)) {
             document.getElementById("whitespace").style.color = "red";
         } else {
             document.getElementById("whitespace").style.color = "green";

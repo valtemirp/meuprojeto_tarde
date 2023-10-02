@@ -2,10 +2,10 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,EmailField,TelField,TextAreaField,SubmitField, PasswordField, SelectField
 from wtforms.validators import DataRequired, Email, Length, Regexp
 from flask_wtf.csrf import CSRFProtect
-
+import email_validator
 class Contato(FlaskForm):
     nome = StringField('nome', validators=[DataRequired()])
-    email = EmailField('email',validators=[DataRequired()])
+    email = EmailField('email',validators=[DataRequired(), Email()])
     telefone = TelField('telefone',validators=[DataRequired()])
     mensagem = TextAreaField('mensagem')
     enviar = SubmitField('Enviar')
